@@ -5,9 +5,40 @@ import {
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from '../styles/Home.module.css'
+import { Button, SearchInput, Placeholders } from '../components'
 
 export default function Home() {
+  const [searchString, setSearchString] = useState('')
   const [profiles, setProfiles] = useState([])
+  const [loadingState, setLoadingState] = useState('loading')
+
+  function handleKeyDown(e) {
+    if (e.key === 'Enter') {
+      searchForPost()
+    }
+  }
+  async function searchForPost() {
+    setLoadingState('')
+    try {
+      const urqlClient = await createClient()
+      const response = await urqlClient.query(searchPublications, {
+        query: searchString, type: 'PUBLICATION'
+      }).toPromise()
+      const postData = response.data.search.items.filter(post => {
+        if (post.profile) {
+          post.backgroundColor = generateRandomColor()
+          return post
+        }
+      })
+  
+      setPosts(postData)
+      if (!postData.length) {
+        setLoadingState('no-results')
+      }
+    } catch (error) {
+      console.log({ error })
+    }
+  }
   useEffect(() => {
     fetchProfiles()
   }, [])
@@ -36,6 +67,19 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <div>
+        <Link href={'/profile/newPage.js'}>
+          <a>New Page</a>
+        </Link>
+        <SearchInput
+          placeholder='Search'
+          onChange={e => setSearchString(e.target.value)}
+          value={searchString}
+          onKeyDown={handleKeyDown}
+        />
+        <Button
+          buttonText="SEARCH POSTS"
+          onClick={searchForPost}
+        />
           {
             profiles.map((profile, index) => (
               <Link href={`/profile/${profile.id}`} key={index}>

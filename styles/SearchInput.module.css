@@ -1,0 +1,11 @@
+.inputStyle {
+  outline: none;
+  border: none;
+  padding: 15px 20px;
+  font-size: 16px;
+  border-radius: 25px;
+  border: 2px solid rgba(0, 0, 0, .04);
+  transition: all .4s;
+  width: 300px;
+  background-color: #fafafa;
+}

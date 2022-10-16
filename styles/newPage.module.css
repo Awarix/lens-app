@@ -1,0 +1,53 @@
+.searchContainerStyle {
+  padding: 40px 0px 30px;
+}
+
+.latestPostStyle {
+  margin: 23px 0px 5px;
+  word-wrap: break-word;
+}
+
+.profileContainerStyle {
+  display: flex;
+  flex-direction: row;
+}
+
+.profileImageStyle .placeholderStyle{
+  width: 42px;
+  height: 42px;
+  border-radius: 34px;
+}
+
+.listItemContainerStyle {
+  display: flex;
+  flex-direction: column;
+}
+
+.listItemStyle {
+  background-color: white;
+  margin-top: 13px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, .15);
+  padding: 21px;
+}
+
+.profileInfoStyle {
+  margin-left: 10px;
+}
+
+.nameStyle {
+  margin: 0 0px 5px;
+}
+
+.handleStyle {
+  margin: 0px 0px 5px;
+  color: #b900c9;
+}
+
+.itemTypeStyle {
+  margin: 0;
+  font-weight: 500;
+  font-size: 14px;
+  color: rgba(0, 0, 0, .45);
+  margin-bottom: 16px;
+}
