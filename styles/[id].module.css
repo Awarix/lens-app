@@ -1,0 +1,14 @@
+.profileContainerStyle {
+    display: "flex";
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.profileImage {
+    border-radius: 50%;
+}
+
+.publications {
+    padding: 4rem;
+    color: var(--clr-light);
+}

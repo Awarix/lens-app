@@ -4,6 +4,7 @@ import { ethers } from 'ethers'
 import Image from 'next/image'
 import { client, getPublications, getProfile } from '../../api'
 import ABI from '../../abi.json'
+import styles from '../../styles/[id].module.css'
 
 const CONTRACT_ADDRESS = '0xDb46d1Dc155634FbC732f92E853b10B288AD5a1d'
 
@@ -90,8 +91,8 @@ export default function Profile() {
   if (!profile) return null
 
   return (
-    <div>
-      <div style={profileContainerStyle}>
+    <section>
+      <div classname={styles.profileContainerStyle}>
         {
           !connected && (
             <button onClick={connectWallet}>Sign In</button>
@@ -100,12 +101,13 @@ export default function Profile() {
         <Image
           width="200px"
           height="200px"
+          className={styles.profileImage}
           src={profile.picture?.original?.url}
         />
         <p>{profile.handle}</p>
         {
             publications.map((pub, index) => (
-              <div key={index}>
+              <div className={styles.publications} key={index}>
                 <p>{pub.metadata.content}</p>
               </div>
             ))
@@ -116,12 +118,6 @@ export default function Profile() {
           )
         }
       </div>
-    </div>
+    </section>
   )
-}
-
-const profileContainerStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'flex-start'
 }
